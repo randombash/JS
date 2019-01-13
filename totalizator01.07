@@ -1,36 +1,57 @@
-var iloscLiczb = 5;                     // ilośc liczb do wylosowania
-var liczbaMin = 2;                      // minimalna losowana liczba
-var liczbaMax = 99;                     // maksymalna losowana liczba
-var powtarzanie = true;                 // czy liczby mogą się powtarzać
+var iloscLiczb = 6;                     // ilośc liczb do wylosowania
+var liczbaMin = 1;                      // minimalna losowana liczba
+var liczbaMax = 49;                     // maksymalna losowana liczba
+var powtarzanie = false;                 // czy liczby mogą się powtarzać
 var wynik = [];                         // zbiór wylosowanych liczb w losowej kolejności
 var liczba = '';                        // wylosowana liczba
 var znalezione = '';
-var nieznalezione = '';
+var blad = 'Nie można wylosować liczb w podanym zakresie';
+var dlugosc = wynik.length;
+
+
 
 function wylicz() {                     // generuje losową liczbę w podanym zakresie
-	    var liczba = Math.round(Math.random() * liczbaMax) + liczbaMin; 
-	    return liczba;
+	    liczba = Math.round(Math.random() * liczbaMax) + liczbaMin; 
+	    return liczba
 	    }
+	    
+function warunekLogiczny(powtarzanie, iloscLiczb, liczbaMax, liczbaMin, dlugosc) {
+        dlugosc = wynik.length;
+        if (powtarzanie == false && iloscLiczb > (liczbaMax - liczbaMin)) {
+            return true;
+        } else if (dlugosc < iloscLiczb) {
+            return false;
+        } else {
+            return true;
+        }
+    
+}
 
 	do {
+     
+     dlugosc = wynik.length;
      wylicz();                          // sprawdzić continue, spr czy do się aktualizuje na różnych etapach
-    
-for (i = 0; i <= wynik.length; i++) {   // pętla sprawdzajca powtarzanie liczb w wyniku
-    if (wynik[i] == liczba) {
-        znalezione = true;
-    } else {
-        nieznalezione = true;
-    }
-}                                       // powrót do pętli do
-    if (powatrzanie = false && iloscLiczb > (liczbaMax - liczbaMin)) {
-	  wynik.push('Nie można wylosować liczb w podanym zakresie');
-   } else if (powtarzanie = false && znalezione != true) {
+     warunekLogiczny(powtarzanie, iloscLiczb, liczbaMax, liczbaMin, dlugosc);
+
+    for (var i = 0; i <= wynik.length; i++) {   // pętla sprawdzajca powtarzanie liczb w wyniku
+        if (wynik[i] == liczba) {
+            znalezione = true;
+            break;
+    } 
+    }                                     // powrót do pętli do
+    if (powtarzanie == false && iloscLiczb > (liczbaMax - liczbaMin)) {
+        wynik.push(blad);
+   } else if (powtarzanie == false && znalezione != true) {
        wynik.push(liczba);
-   } else if (powtarzanie = true) {
+   } else if (powtarzanie == true) {
        wynik.push(liczba);
    } else {
-       i = i--;
+       continue;
    } 
-   } while (wynik.length < iloscLiczb);
+} while (warunekLogiczny(powtarzanie, iloscLiczb, liczbaMax, liczbaMin, dlugosc) == false);
+
+console.log(wynik);
+/*console.log(znalezione);
+console.log(liczba);
+console.log(warunekLogiczny(powtarzanie, iloscLiczb, liczbaMax, liczbaMin, dlugosc));*/
    
-   console.log(wynik);
