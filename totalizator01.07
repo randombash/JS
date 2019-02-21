@@ -1,4 +1,4 @@
-var iloscLiczb = 6;                     // ilośc liczb do wylosowania
+var iloscLiczb = 40;                     // ilośc liczb do wylosowania
 var liczbaMin = 1;                      // minimalna losowana liczba
 var liczbaMax = 49;                     // maksymalna losowana liczba
 var powtarzanie = false;                 // czy liczby mogą się powtarzać
@@ -17,7 +17,7 @@ function wylicz() {                     // generuje losową liczbę w podanym za
 	    
 function warunekLogiczny(powtarzanie, iloscLiczb, liczbaMax, liczbaMin, dlugosc) {
         dlugosc = wynik.length;
-        if (powtarzanie == false && iloscLiczb > (liczbaMax - liczbaMin)) {
+        if (powtarzanie === false && iloscLiczb > (liczbaMax - liczbaMin)) {
             return true;
         } else if (dlugosc < iloscLiczb) {
             return false;
